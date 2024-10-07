@@ -1,0 +1,24 @@
+{% extends "common.html" %}
+{% load static %}
+{% block title %}cat_prod{% endblock title %}
+{% block contents %}
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px; overflow-x: auto;padding-bottom:3em;padding-top:3em">
+
+{% for i in cat_prod %}
+    <div style="text-align: center;">
+        <img src="{{i.image.url}}" alt="" style="width: 200px; height: 200px;">
+        <h5>{{i.name}}</h5>
+        <h6>${{i.rate}}</h6>
+        <a href="{% url "view_pro" i.id %}">
+            <button type="button" class="btn btn-secondary">View Product</button>
+        </a>
+        <!-- <h6>Product Description</h6>
+        <p>{{i.description}}</p> -->
+    </div>
+
+
+
+
+{% endfor %}
+</div>
+{% endblock contents %}

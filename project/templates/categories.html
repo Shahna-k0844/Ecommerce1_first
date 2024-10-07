@@ -1,0 +1,26 @@
+{% extends "common.html" %}
+{% load static %}
+{% block title %}Categories{% endblock title %}
+{% block contents %}
+<div class="second"style="padding-top:2em">
+    <div class="redplustoday">
+      <img class="red_arrow" src="{% static "images/red_arrow.avif" %}" alt="">
+      <p> View all</p>
+    </div>
+    <div>
+      <h3>Categories</h3>
+    </div>
+</div>
+<div class="products"style="padding:1.6em;padding-inline:20em;gap:65px;padding-bottom:10em">
+        {% for i in category %}
+
+        <div class="product">
+            <a style="text-decoration:none" href="{% url "cat_pro" i.id %}">
+              <img src="{{i.image.url}}" alt=""style="width:200px;height:260px;gap:30px">
+              <h5 style="text-decoration:none;color:black" >{{i.name}}</h5>
+              {% comment %} <h6>{{i.rate}}</h6> {% endcomment %}
+            </a>
+        </div>
+        {% endfor %}
+</div>  
+{% endblock contents %}

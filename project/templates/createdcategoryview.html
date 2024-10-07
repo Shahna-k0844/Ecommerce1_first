@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <table style="border: 1px solid black;">
+            <tr >
+                <th style="border: 1px solid black;">Image</th>
+                <th style="border: 1px solid black;">Name</th>
+                <th style="border: 1px solid black;">Price</th>
+            </tr>
+            {% for i in Category %}
+            <tr>
+                <td><img style="width:90px;height:90px" src="{{i.image.url}}" alt=""></td>
+                <td>{{i.name}}</td>
+                <td>{{i.rate}}</td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}order{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "css/placeorder.css" %}">
+</head>
+<body style='padding-inline:10em'>
+    {% block contents %}
+    <h1>Place your Order</h1>
+    <h4>user : {{user.username}}</h4>
+    <h4>email : {{user.email}}</h4>
+    <table>
+        <tr>
+            <th>ITEM</th>
+            <th>QUANTITY</th>
+            <th>PRICE</th>
+        </tr>
+    
+        {% for i in cartitems %}
+            <tr>
+                <td>{{i.product.name}}</td>
+                <td>{{i.quantity}}</td>
+                <td>{{i.price}}</td>
+            </tr>    
+        {% endfor %}
+    </table>
+    <h4>Total = $ {{total}}</h4>
+    <h2>Enter your address here</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <textarea name="address">{{exist_address}}</textarea>
+
+        </div>
+    
+        <div>
+            <a href="{% url "thankyou" %}">
+                <button type='submit'>order</button>
+            </a>
+    
+        </div>
+    </form>
+    {% endblock contents %}
+</body>
+</html>

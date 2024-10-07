@@ -1,0 +1,42 @@
+#boxfooter{
+    width: 9em;
+    height: .5em;
+}
+.qrcode{
+    width: 100px;
+    height: 100px;
+    /* background-color: white; */
+}
+.play{
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 7px;
+    gap: 5px;
+    align-items: center;
+}
+footer{
+    display: flex;
+    gap: 8.9em;
+    background-color: rgb(23, 22, 22);
+    color: white;
+    font-size: small;
+    padding: 30px;
+    padding-inline: 6em;
+    padding-bottom: 5em;
+}
+.qr_and_button{
+    display: flex;
+    gap: 30px;
+}
+.foot_link{
+    color: white;
+    text-decoration: none;
+    /* font-weight: 700; */
+}
+.foot_head{
+    font-weight: 700;
+    font-size: larger;
+    color: white;
+    text-decoration: none;
+    
+}

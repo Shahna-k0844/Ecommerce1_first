@@ -1,0 +1,27 @@
+{% extends "common.html" %}
+{% load static %}
+{% block title %}products{% endblock title %}
+{% block contents %}
+<div class="second">
+    <div class="redplustoday">
+      <img class="red_arrow" src="{% static "images/red_arrow.avif" %}" alt="">
+      <p> View all</p>
+    </div>
+    <div>
+      <h3>Products</h3>
+    </div>
+</div>
+<div class="products">
+        {% for i in product %}
+      
+        <div class="product">
+            <img src="{{i.image.url}}" alt=""style="width:200px;height:200px;gap:30px">
+            <h5>{{i.name}}</h5>
+            <h6>${{i.rate}}</h6>
+            <a href="{% url "view_pro" i.id %}">
+              <button type="button" class="btn btn-secondary">View Product</button>
+            </a>
+        </div> 
+        {% endfor %}
+</div>  
+{% endblock contents %}

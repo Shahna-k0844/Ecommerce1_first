@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "common.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}wishlist{% endblock title %}</title>
+</head>
+<body>
+    {% block contents %}
+        {% for i in wishlist %}
+            <p>{{i.product.name}}</p>
+        {% endfor %}
+    
+    {% endblock contents %}
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends "common.html" %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}cart{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "css/cart.css" %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+{% block contents %}
+{% if cartprod %}
+<div style="padding-inline: 10em;padding-top:4em;padding-bottom:5.1em">
+    {% for i in cartprod %}
+  
+    <div style="display: flex;gap:3em;padding-bottom:2em">
+        <div>
+            <img src="{{i.product.image.url}}" alt=""style="width:200px;height:200px;gap:30px">
+        </div>
+        <div>
+            <h5>{{i.product.name}}</h5>
+
+            <h6>${{i.product.rate}}</h6>
+            <h6>Qty: {{i.quantity}}</h6>
+            <h6>price: {{i.price}}</h6>
+            <!-- <h6>{{i.quantity}}</h6> -->
+            <div style="display: flex;gap:8px">
+                <form method='post' action="{% url "remove" i.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">Remove</button>
+                </form>
+                <div>
+                    {% comment %} <a href="{% url "wishlist" i.id %}">
+                        <button type="submit" class="btn btn-outline-danger">Move to wishlist</button>
+                    </a> {% endcomment %}
+                    <form onsubmit="myfunct()" action="{% url "wishlist" i.id %}" method="post">
+                        {% csrf_token %} 
+                        <script>  
+                            function myfunct(){
+                                alert("product is added to wishlist")
+                            }
+            
+                        </script> 
+                        <button type="submit" class="btn btn-outline-danger">Move to wishlist</button>            
+                    </form>     
+            
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    {% endfor %}
+    <div style="position:absolute;top:5.6em;left:35em;color:red">
+        {% if messages %}
+        {% for message in messages %}
+            <h5>{{message}}</h5>
+        {% endfor %}
+    {% endif %}
+
+    </div>
+    <div class="border border-dark-subtle p-5 rounded"style="border: 1 px solid black;position:absolute;top:8em;left:60em">
+        
+        <h5><strong>PRICE DETAILS</strong></h5>
+        <p>Price of {{quantity}} items</p>
+        <h6>Total Amount : {{total}}</h6> <br>
+        <a href="{% url "placeorder" %}">
+            <button type="submit" class="btn" style="background-color: yellowgreen; color: white;width:150px;top:1em">Place Order</button>
+        </a>
+    </div>
+    
+</div>  
+{% else %}
+    <div style="padding-top: 5em;padding-bottom:16.9em;padding-inline:36em">
+    <h5>Your cart is empty!!!!!</h5>
+    </div>
+
+{% endif %}
+
+
+    
+
+{% endblock contents %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

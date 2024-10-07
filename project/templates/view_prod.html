@@ -1,0 +1,50 @@
+{% extends "common.html" %}
+{% load static %}
+{% block title %}view{% endblock title %}
+{% block contents %}
+
+<div class="product"style=" justify-content: center; align-items: center;padding-inline:5em;width:100%;padding-bottom:4em;padding-top:4em">
+    <img  src="{{viewprod.image.url}}" alt=""style="width:200px;height:200px;gap:30px;align-items:center">
+    <h5>{{viewprod.name}}</h5>
+    <h6>${{viewprod.rate}}</h6>
+    <h5>Product Details</h5>
+
+        <li><strong style="color: rgb(73, 72, 72);">Colour: </strong>{{viewprod.color}}</li>
+        <li><strong style="color: rgb(73, 72, 72);">Care instructions: </strong>{{viewprod.care_instructions}}</li>
+        <li><strong style="color: rgb(73, 72, 72);">Design: </strong>{{viewprod.design}}</li>
+        <li><strong style="color: rgb(73, 72, 72);">Fabric: </strong>{{viewprod.fabric}}</li>
+        <li><strong style="color:rgb(73, 72, 72);">Pattern: </strong>{{viewprod.pattern}}</li>
+
+
+        
+   
+    <h5>Product Description</h5>
+
+    <p>{{viewprod.description}}</p>
+    <div style="display: flex;gap:30px;color:white">
+        {% comment %} <a href="{% url "cart" view_prod.id %}"> {% endcomment %}
+        {% comment %} <form method="post" action="{% url "cart" viewprod.id %}"> {% endcomment %}
+        <form onsubmit="myfunc()" action="{% url "cart" viewprod.id %}" method="post">
+            {% csrf_token %} 
+            <script>  
+                function myfunc(){
+                    alert("product is added to cart")
+                }
+
+            </script> 
+            <button type="submit" class="btn btn-secondary">Add to Cart</button> 
+
+        </form>     
+        {% comment %} </form> {% endcomment %}
+        {% comment %} {% if messages %}
+            {% for message in messages %}
+                <h5>{{message}}</h5>
+            {% endfor %}
+        {% endif %} {% endcomment %}
+        <button type="button" class="btn btn-warning">Buy Now :)</button>
+       
+    </div>
+    
+</div> 
+
+{% endblock contents %}
